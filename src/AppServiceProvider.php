@@ -27,14 +27,18 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        //绑定中间件，并发布
+        //绑定api中间件，并发布
         $kernel = $this->app->make(Kernel::class);
-        $kernel->pushMiddleware(RecordApi::class);
+        $kernel->pushMiddlewareToGroup('api',RecordApi::class);
 
         //发布配置文件
         $this->publishes([
             __DIR__.'/../config/config.php' => config_path('record_api_logger.php'),
         ]);
+
+        //发布数据库文件
+        $this->publishes([__DIR__ . '/../migrations/create_record_api_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_api_table.php'),], 'migrations');
+        $this->publishes([__DIR__ . '/../migrations/create_record_query_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_query_table.php'),], 'migrations');
 
         //迁移数据库文件
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
