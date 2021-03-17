@@ -5,13 +5,13 @@ namespace Smbear\RecordApiLogger\Listeners;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Events\QueryExecuted;
-use Smbear\RecordApiLogger\Events\QuerySqlEvent;
+use Smbear\RecordApiLogger\Events\RequestEvent;
 
 class QuerySqlListener
 {
-    public function handle(QuerySqlEvent $event)
+    public function handle(RequestEvent $event)
     {
-        $uniqueId = $event->uniqueId;
+        $uniqueId = $event->request->headers->get('R-Unique-Id');
 
         DB::listen(function (QueryExecuted $query) use ($uniqueId) {
             $bindings = $query->connection->prepareBindings($query->bindings);
