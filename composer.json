@@ -1,0 +1,44 @@
+{
+  "name": "smbear/record-api-logger",
+  "description": "Record Laravel Api Logger",
+  "keywords": [
+    "smbear",
+    "record-api-logger"
+  ],
+  "homepage": "https://github.com/smbear/record-api-logger",
+  "license": "MIT",
+  "type": "library",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "smile",
+      "email": "ywjmylove@163.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php":"^7.4 | ^8.0",
+    "jenssegers/mongodb": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Smbear\\RecordApiLogger\\": "src"
+    },
+    "files": [
+      "helper/function.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Smbear\\RecordApiLogger\\AppServiceProvider"
+      ]
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}
