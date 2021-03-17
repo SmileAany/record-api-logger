@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //绑定api中间件，并发布
         $kernel = $this->app->make(Kernel::class);
-        $kernel->pushMiddlewareToGroup('api',RecordApi::class);
+        $kernel->appendMiddlewareToGroup('api',RecordApi::class);
 
         //发布配置文件
         $this->publishes([
