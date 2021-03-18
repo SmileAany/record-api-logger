@@ -31,9 +31,6 @@ class AppServiceProvider extends ServiceProvider
         $kernel = $this->app->make(Kernel::class);
         $kernel->appendMiddlewareToGroup('api',RecordApi::class);
 
-        //迁移数据库文件
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-
         if ($this->app->runningInConsole()) {
 
             //发布配置文件
@@ -48,12 +45,16 @@ class AppServiceProvider extends ServiceProvider
 
             //发布数据库文件
             if (!class_exists('CreateRecordApiTable')) {
-                $this->publishes([
-                    __DIR__ . '/../migrations/create_record_api_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . 'create_record_api_table.php'),
-                ], 'migrations');
 
                 $this->publishes([
-                    __DIR__ . '/../migrations/create_record_query_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . 'create_record_query_table.php'),
+                    __DIR__ . '/../migrations/create_record_api_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_api_table.php'),
+                ], 'migrations');
+            }
+
+            if (!class_exists('CreateRecordQueryTable')) {
+
+                $this->publishes([
+                    __DIR__ . '/../migrations/create_record_query_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_query_table.php'),
                 ], 'migrations');
             }
         }
