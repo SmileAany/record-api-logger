@@ -47,14 +47,14 @@ class AppServiceProvider extends ServiceProvider
             if (!class_exists('CreateRecordApiTable')) {
 
                 $this->publishes([
-                    __DIR__ . '/database/../migrations/create_record_api_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_api_table.php'),
+                    __DIR__ . '/../database/migrations/create_record_api_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_api_table.php'),
                 ], 'migrations');
             }
 
             if (!class_exists('CreateRecordQueryTable')) {
 
                 $this->publishes([
-                    __DIR__ . '/database/../migrations/create_record_query_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_query_table.php'),
+                    __DIR__ . '/../database/migrations/create_record_query_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_record_query_table.php'),
                 ], 'migrations');
             }
         }
