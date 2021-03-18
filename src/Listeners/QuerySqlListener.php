@@ -34,7 +34,6 @@ class QuerySqlListener
             ];
 
             $cache = Cache::get($uniqueId) ?? [];
-
             $cache['query'][] = $data;
 
             Cache::put($uniqueId,$cache,config('record_api_logger.cache_time'));

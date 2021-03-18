@@ -13,7 +13,7 @@ class ResponseEvent extends Event
 
     public function __construct(Request $request,$response)
     {
-        $this->request = $request;
+        $this->request  = $request;
 
         $this->response = $response;
     }

@@ -25,7 +25,8 @@ class ResponseListener
             'time'     => sprintf('%.2f',($endTime - LARAVEL_START) * 1000)
         ];
 
-        $uniqueId = request()->headers->get('R-Unique-Id');
+        $uniqueId = $event->request->headers->get('R-Unique-Id');
+
         $cache = Cache::get($uniqueId) ?: [];
         $cache['request'] = $data;
 
