@@ -14,7 +14,7 @@ use Smbear\RecordApiLogger\Models\Mongodb\ApiLogger AS MongodbApiLogger;
 use Smbear\RecordApiLogger\Models\Mongodb\QueryLogger AS MongodbQueryLogger;
 
 
-class SaveApiLoggerData
+class SaveApiLoggerData implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
